@@ -7,11 +7,12 @@ const PORT = process.env.PORT || 5001;
 const cors = require('cors');
 const mongoose = require('mongoose');
 const userRoutes = require('./routes/userRoutes');
+const notFound = require('./middlewares/errorMiddlewares');
+const errorHandler = require('./middlewares/errorMiddlewares');
 
 
-// Middleware/App in use
+// Middleware/ App in use
 app.use(cors());
-app.use('/api/users', userRoutes);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -24,8 +25,10 @@ app.get('/', (req, res)=> {
 app.get('/api/notes', (req, res)=>{
     res.send(notes);
 })
+app.use('/api/users', userRoutes);
+app.use(notFound);
+app.use(errorHandler);
 
-app.use('/api/users', userRoutes)
 
 
 // MongoDB Connect
