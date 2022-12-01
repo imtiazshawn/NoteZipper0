@@ -7,8 +7,7 @@ const PORT = process.env.PORT || 5001;
 const cors = require('cors');
 const mongoose = require('mongoose');
 const userRoutes = require('./routes/userRoutes');
-const notFound = require('./middlewares/errorMiddlewares');
-const errorHandler = require('./middlewares/errorMiddlewares');
+const { notFound, errorHandler } = require('./middlewares/errorMiddlewares');
 
 
 // Middleware/ App in use
